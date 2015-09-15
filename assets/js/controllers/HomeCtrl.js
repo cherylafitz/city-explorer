@@ -96,13 +96,17 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
 
   // attempts to get places only for current user.
 
-  UserPlace.query({
-    user_id:$scope.currentUser.id
-  }).then(function(places){
-    console.log('userid',$scope.currentUser.id)
-    console.log('UserPlaces',places)
-    $scope.places = places;
-  });
+  if ($scope.currentUser) {
+    UserPlace.query({
+      user_id:$scope.currentUser.id
+    }).then(function(places){
+      console.log('userid',$scope.currentUser.id)
+      console.log('UserPlaces',places)
+      $scope.places = places;
+    });
+  } else {
+    $scope.places = ['none'];
+  }
 
 
   // function(){
