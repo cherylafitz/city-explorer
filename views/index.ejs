@@ -1,0 +1,27 @@
+<div layout="column" ng-app="CityExplorer">
+  <md-toolbar class="topnav" layout="row">
+    <div class="md-toolbar-tools" ng-controller="NavCtrl">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
+      </md-button>
+      <a id="brand">City Explorer</a>
+        <div class="nav left-nav">
+          <a href="/"><md-button>Home</md-button></a>
+          <a href="/about"><md-button>About</md-button></a>
+        </div>
+        <div class="right-nav">
+            <span ng-if="currentUser">
+              You are logged in as: {{currentUser.firstName || 'Unknown User'}}
+            </span>
+            <md-button ng-click="showLogin($event)" ng-hide="currentUser">Login</md-button>
+            <md-button ng-click="showSignup($event)" ng-hide="currentUser">Signup</md-button>
+            <md-button ng-click="logout()" ng-show="currentUser">Logout</md-button>
+            <span ng-if="currentUser">
+              {{currentUser.location}}
+            </span>
+        </div>
+    </div>
+  </md-toolbar>
+  <ng-view layout-margin></ng-view>
+
+</div>

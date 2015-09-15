@@ -1,0 +1,63 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav a {
+  margin-right: 1em;
+}
+.attractions {
+  width: 68%;
+  float: left;
+}
+
+.restaurants {
+  width: 30%;
+}
+
+#brand {
+  margin-right: 3em;
+  font-size: 1.5em;
+}
+.right-nav {
+  float: right;
+}
+.checkbox {
+  float: right;
+}
+
+md-checkbox.md-checked .md-icon {
+  background-color: rgb(255, 143, 0);
+}
+
+ng-view {
+  padding: 0em 1em;
+}
+.places-thumbs {
+  width: 370px;
+  float: left;
+  margin-bottom: 1em;
+  margin-right: 2em;
+}
+.places-thumbs img {
+  float: left;
+  margin-right: 1em;
+  border-right: 3px solid #0097A7;
+  box-shadow: -1px 1px 2px #777;
+}
+.restaurants .places-thumbs img {
+  border-right: 3px solid #FF8F00;
+}
+
+.place-name {
+  border-bottom: 1px solid #0097A7;
+  height: 50px;
+}
+
+.restaurants .place-name {
+  border-bottom: 1px solid #FF8F00;
+  height: 50px;
+}
+
+.topnav {
+  box-shadow: 0px 6px 10px #777;
+}

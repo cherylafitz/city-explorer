@@ -1,0 +1,35 @@
+
+  <md-content layout="row" class="md-padding" layout-wrap layout-gt-sm>
+      <form class="set-location" ng-submit="setLocation()" flex-gt-sm="50">
+        <md-input-container>
+          <label>Set Location</label>
+          <input type="text" ng-model="chosenLocation">
+        </md-input-container>
+      </form>
+      <div flex-gt-sm="50">
+        <a href="/map"><md-button class="md-raised md-primary md-fab" layout-align="right">Map</md-button></a>
+      </div>
+      <div class="attractions">
+        <h1 class="md-headline">Attractions</h1>
+        <div class="places-thumbs" layout-wrap ng-repeat="attraction in attractions">
+          <img ng-src="{{attraction.image_url}}" ><div class="place-name">{{attraction.name}}</div>
+          <md-button class="md-fab md-mini md-hue-8" ng-class="{'active' : place[$index].visited}" ng-click="addPlace(attraction,$index,'visited')">
+            <md-icon>check</md-icon>
+          </md-button>{{places}}
+          <md-button class="md-fab md-mini md-hue-2" ng-click="addPlace(attraction,$index,'willVisit')">
+            <md-icon>add</md-icon>
+          </md-button>
+          <md-button class="md-fab md-warn md-hue-1 md-mini md-default" ng-click="addPlace(attraction,$index,'clear')">
+            <md-icon>clear</md-icon>
+          </md-button>
+        </div>
+      </div>
+      <div class="restaurants">
+        <h1 class="md-headline">Restaurants</h1>
+        <div class="places-thumbs restaurants" layout-wrap ng-repeat="restaurant in restaurants">
+          <img ng-src="{{restaurant.image_url}}" ><div class="place-name">{{restaurant.name}}</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </md-content>
