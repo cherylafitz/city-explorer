@@ -5,9 +5,12 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
   $scope.chosenLocation = '';
   $scope.attractions = [];
   $scope.restaurants = [];
+  // not using detected location unless proves necessary
   // $scope.detectedLocation = '';
   $scope.currentUser = UserService.currentUser;
 
+
+  // adds place to database, or updates values if it already exists
   $scope.addPlace = function(attraction,idx,status) {
       var visited;
       var willVisit;
@@ -24,47 +27,58 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
 
     console.log('item', idx)
     console.log('status', status)
-
-    // console.log('willVisit', willVisit)
-
     console.log('attraction',attraction);
-    // $scope.visited = !$scope.visited;
-    // $scope.willVisit = !$scope.willVisit;
-    $scope.place = {
+
+    var id = attraction.yelp_id || attraction.id;
+    if (attraction.location) {
+      var longitude = attraction.location.coordinate.longitude;
+      var latitude = attraction.location.coordinate.latitude;
+    } else {
+      var lattitude = attraction.lat
+      var longitude = attraction.lon;
+    }
+    var place = {
       name:attraction.name,
       kind: 'attraction',
       image_url:attraction.image_url,
       snippet_text: attraction.snippet_text,
       display_address: attraction.display_address,
-      // lon: attraction.location.coordinate.longitude || lon,
-      // lat: attraction.location.coordinate.latitude || lat,
-      yelp_id: attraction.id,
+      lon: longitude,
+      lat: latitude,
+      yelp_id: id,
       visited: visited,
       willVisit: willVisit,
-      index: idx
+      index: idx,
+      url: attraction.url
     }
 
-    var newPlace = new Place($scope.place)
+    var newPlace = new Place(place)
     if ($scope.currentUser) {
       newPlace.$save().then(function(place){
         console.log('saved',place);
+        //$scope.attractions[idx].visted = visited;
+        attraction.visited = visited;
+        attraction.willVisit = willVisit;
       }).catch(function(err){
         console.log('err',err);
       });
     }
   }
 
+  // watches current user
   $scope.UserService = UserService;
   $scope.$watchCollection('UserService',function(){
     $scope.currentUser = UserService.currentUser;
   });
 
+  // to be used for changing default location
   $scope.setLocation = function() {
     console.log($scope.chosenLocation);
     getRestaurants();
     getAttractions();
   }
 
+  // calls for yelp restaurant data
   var getRestaurants = function(searchTerm) {
     $scope.location = $scope.detectedLocation && ($scope.chosenLocation.length === 0) ? 'll=' + $scope.detectedLocation : 'location=' + $scope.chosenLocation;
     return $http({
@@ -72,39 +86,40 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
     }).then(function(data){
       console.log('food', data.data)
       $scope.restaurants = data.data;
-      // return $scope.restaurants;
     });
   }
 
-  Place.query().then(function(all_places){
-    UserPlace.query({
-      user_id:$scope.currentUser.id
-    }).then(function(places){
-      console.log('userid',$scope.currentUser.id)
-      console.log('places',places)
-    });
-      $scope.places = all_places;
-  });
-  // UserPlace.query({
-  //   user_id:$scope.currentUser.id
-  // }).then(function(places){
-  //   console.log('userid',$scope.currentUser.id)
-  //   console.log('places',places)
-  //   $scope.places = places;
+  // gets all places in database to load and compare to api data (needs to be for current user)
+  // Place.query().then(function(all_places){
+  //     $scope.places = all_places;
   // });
-  // $scope.places =
 
-  // var getUserPlaces = function(){
-  //   return $http({
-  //     url:'/api/user/' + $scope.currentUser.id + '/places'
-  //   }).then(function(places){
-  //     console.log('places from http',places)
-  //      $scope.myPlaces = places
-  //   })
+  // attempts to get places only for current user.
+
+  UserPlace.query({
+    user_id:$scope.currentUser.id
+  }).then(function(places){
+    console.log('userid',$scope.currentUser.id)
+    console.log('UserPlaces',places)
+    $scope.places = places;
+  });
+
+
+  // function(){
+  //   if ($scope.currentUser) {
+  //     return $http({
+  //       url:'/api/user/' + $scope.currentUser.id + '/places'
+  //     }).then(function(places){
+  //       console.log('places from http',places)
+  //        $scope.myPlaces = places
+  //     })
+  //   } else {
+  //     $scope.myPlaces = [];
+  //   }
   // }
 
+  // calls for yelp attraction data
   var getAttractions = function(searchTerm) {
-    // $scope.places = getUserPlaces();
     $scope.location = $scope.detectedLocation && ($scope.chosenLocation.length === 0) ? 'll=' + $scope.detectedLocation : 'location=' + $scope.chosenLocation;
     return $http({
       url:'/api/yelp/search?' + $scope.location + '&term=attractions',
@@ -128,11 +143,14 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
       $scope.attractions = data.data;
     });
   }
-  $scope.$watch('attractions', function(newVal, oldVal){
-    // alert('change!')
-    console.log(newVal,oldVal);
-    console.log('change')
-  },true);
+  // $scope.$watchCollection('attractions', function(){
+  //   // alert('change!')
+  //   console.log('change')
+  // },true);
+  // $scope.$watch('attractions', function(){
+  //   // alert('change!')
+  //   console.log('change')
+  // },true);
 
   $scope.$evalAsync(function(){
       getAttractions();

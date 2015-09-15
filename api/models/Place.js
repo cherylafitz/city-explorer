@@ -46,6 +46,9 @@ module.exports = {
     willVisit: {
       type: 'boolean'
     },
+    url: {
+      type: 'string'
+    },
 
     // associations
     owner:{

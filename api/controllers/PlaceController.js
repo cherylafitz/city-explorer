@@ -23,7 +23,8 @@ module.exports = {
       visited:req.body.visited,
       willVisit:req.body.willVisit,
       owner: uid,
-      index: req.body.index
+      index: req.body.index,
+      url: url
     };
     Place.findOne({
       owner:uid,

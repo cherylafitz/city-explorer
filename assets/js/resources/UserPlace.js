@@ -4,7 +4,7 @@ CityExplorer.factory('UserPlace', ['sailsResource', function(sailsResource){
 
     query:{
       method: 'GET',
-      url: 'api/user/:user_id/places',
+      url: '/api/user/:user_id/places',
       isArray: true
     },
     get:{

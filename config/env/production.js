@@ -23,6 +23,9 @@ module.exports = {
             url: process.env.MONGOLAB_URI
         }
     },
+    models:{
+        connection: 'myMongoDbServerProd'
+    }
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
