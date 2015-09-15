@@ -17,14 +17,42 @@ var async = require('async');
 module.exports = {
 
   search: function(req,res) {
+    // if (currentUser) {
+    //   var uid = req.session.user.id;
+    // }
     var ip = '157.130.186.54';
     var ll = '';
     var term = req.query.term;
     var location = req.query.location;
     console.log('my ip', ip);
-    var sendData = function(error, data) {
-      res.send(data);
+    // var manipData = function(error, data) {
+    //   res.send(data.businesses);
+    // };
+    var manipData = function(error, data) {
+      console.log(data)
+      var newData = {};
+      data.businesses.forEach(function(item){
+        var id = item.id;
+        newData[id] = item
+      })
+      // });
+      res.send(newData);
     };
+      // console.log('starting!!!!!!',data)
+      //   Place.find({owner:uid}).then(function(places){
+      //     placesYelpIds = places.map(function(item){
+      //       return {yelpId: item.yelp_id}
+      //     });
+      //     console.log(placesYelpIds)
+
+      //     data.find({
+      //       or : [
+      //         { yelp_id: placesYelpIds }
+      //       ]
+      //     })
+      //   })
+      // })
+    // };
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     // console.log('session', req.session)
 
@@ -50,16 +78,16 @@ module.exports = {
           callback(null,ll);
         });
       },
-      function(ll,callback) {
+      function(ll, callback) {
         // console.log('ll~!!!', ll)
         if (req.query.location) {
-          yelp.search({location: req.query.location, sort: 2, term: term}, sendData);
+          yelp.search({location: req.query.location, sort: 2, term: term}, manipData);
         } else if (ll) {
-          yelp.search({ll: ll, sort: 2, term: term}, sendData);
+          yelp.search({ll: ll, sort: 2, term: term}, manipData);
         } else if (req.query.ll) {
-          yelp.search({ll: req.query.ll, sort: 2, term: term}, sendData);
+          yelp.search({ll: req.query.ll, sort: 2, term: term}, manipData);
         } else {
-          yelp.search({location: 'New York City', sort: 2, term: term}, sendData);
+          yelp.search({location: 'New York City', sort: 2, term: term}, manipData);
         }
         callback(null,'data');
       }

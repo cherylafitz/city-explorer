@@ -13,7 +13,8 @@ module.exports = {
     var uid = req.session.user.id;
     var data = {
       name:req.body.name,
-      img:req.body.img,
+      kind: req.body.kind,
+      image_url:req.body.image_url,
       snippet_text:req.body.snippet_text,
       display_address:req.body.display_address,
       lon:req.body.lon,
@@ -21,7 +22,8 @@ module.exports = {
       yelp_id:req.body.yelp_id,
       visited:req.body.visited,
       willVisit:req.body.willVisit,
-      owner: uid
+      owner: uid,
+      index: req.body.index
     };
     Place.findOne({
       owner:uid,

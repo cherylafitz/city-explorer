@@ -12,7 +12,10 @@ module.exports = {
       type: 'string',
       required: true
     },
-    img: {
+    kind: {
+      type: 'string'
+    },
+    img_url: {
       type: 'string'
     },
     rating: {

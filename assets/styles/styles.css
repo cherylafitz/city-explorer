@@ -28,6 +28,14 @@ body {
 md-checkbox.md-checked .md-icon {
   background-color: rgb(255, 143, 0);
 }
+a.md-button.md-fab.active,
+.md-button.md-fab.active {
+  background-color: rgb(255,215,64);
+}
+a.md-button.md-fab,
+.md-button.md-fab {
+  background-color: #fff;
+}
 
 ng-view {
   padding: 0em 1em;
