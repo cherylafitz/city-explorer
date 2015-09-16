@@ -24,7 +24,7 @@ module.exports = {
       willVisit:req.body.willVisit,
       owner: uid,
       index: req.body.index,
-      url: url
+      url: req.body.url
     };
     Place.findOne({
       owner:uid,

@@ -34,7 +34,7 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
       var longitude = attraction.location.coordinate.longitude;
       var latitude = attraction.location.coordinate.latitude;
     } else {
-      var lattitude = attraction.lat
+      var latitude = attraction.lat
       var longitude = attraction.lon;
     }
     var place = {

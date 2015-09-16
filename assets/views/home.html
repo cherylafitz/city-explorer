@@ -15,15 +15,15 @@
         <h1 class="md-headline">Attractions</h1>
         <div class="places-thumbs" layout-wrap ng-repeat="attraction in attractions">
           <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" >
-          <img ng-if="attraction.img" ng-src="{{attraction.img}}" ><div class="place-name">{{attraction.name}}</div>
+          <img ng-if="attraction.img" ng-src="{{attraction.img}}" ><div class="place-name"><a ng-href="{{attraction.url}}" target="_blank">{{attraction.name}}</a></div>
 
-          <md-button class="md-fab md-mini md-hue-8" ng-class="{'active' : attraction.visited}" ng-click="addPlace(attraction,$index,'visited')">
+          <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : attraction.visited}" ng-click="addPlace(attraction,$index,'visited')">
             <md-icon>check</md-icon>
           </md-button>
-          <md-button class="md-fab md-mini" ng-class="{'active' : attraction.willVisit}" ng-click="addPlace(attraction,$index,'willVisit')">
+          <md-button class="md-fab md-mini btn-add" ng-class="{'active' : attraction.willVisit}" ng-click="addPlace(attraction,$index,'willVisit')">
             <md-icon>add</md-icon>
           </md-button>
-          <md-button class="md-fab md-mini md-default" ng-click="addPlace(attraction,$index,'clear')">
+          <md-button class="md-fab md-mini btn-clear" ng-click="addPlace(attraction,$index,'clear')">
             <md-icon>clear</md-icon>
           </md-button>
         </div>

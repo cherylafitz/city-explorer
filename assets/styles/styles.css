@@ -25,15 +25,72 @@ body {
   float: right;
 }
 
+a {
+  color: #000;
+  text-decoration: inherit;
+  transition: color .3s ease;
+}
+
+a:hover,
+a:active {
+  color: #006064;
+}
+
 md-checkbox.md-checked .md-icon {
   background-color: rgb(255, 143, 0);
 }
 a.md-button.md-fab.active,
 .md-button.md-fab.active {
-  background-color: rgb(255,215,64);
+  /*background-color: rgb(255,215,64);*/
+  background-color: #fff;
+
+}
+.material-icons {
+  line-height: 1;
 }
 a.md-button.md-fab,
 .md-button.md-fab {
+  background-color: #fff;
+  /*border: 2px solid;*/
+  opacity: 1;
+}
+a.md-button.md-fab.btn-clear:hover,
+.md-button.md-fab.btn-clear:hover {
+  background-color: #e6e6e6;
+}
+a.md-button.md-fab.btn-check.active,
+.md-button.md-fab.btn-check.active,
+a.md-button.md-fab.btn-check:hover,
+.md-button.md-fab.btn-check:hover {
+  background-color: #0097A7;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+a.md-button.md-fab.active md-icon,
+.md-button.md-fab.active md-icon {
+  color: #fff;
+}
+a.md-button.md-fab.btn-add.active,
+.md-button.md-fab.btn-add.active {
+  background-color: #FF8F00;
+  transition: all 0.3s ease;
+}
+a.md-button.md-fab.btn-check,
+.md-button.md-fab.btn-check {
+  /*border-color: #0097A7;*/
+  transition: all 0.3s ease;
+}
+
+a.md-button.md-fab.btn-add,
+.md-button.md-fab.btn-add {
+  /*border-color:#FF8F00;*/
+}
+a.md-button.md-fab.btn-clear,
+.md-button.md-fab.btn-clear {
+  /*border-color: #cecece;*/
+}
+
+.md-button.md-fab.btn-clear {
   background-color: #fff;
 }
 
@@ -41,7 +98,7 @@ ng-view {
   padding: 0em 1em;
 }
 .places-thumbs {
-  width: 370px;
+  width: 350px;
   float: left;
   margin-bottom: 1em;
   margin-right: 2em;
@@ -67,5 +124,5 @@ ng-view {
 }
 
 .topnav {
-  box-shadow: 0px 6px 10px #777;
+  box-shadow: 0px 0px 20px #000;
 }

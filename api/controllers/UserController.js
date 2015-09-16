@@ -27,7 +27,8 @@ module.exports = {
   setLocation: function(req,res){
     // function(callback){
     var ip = '157.130.186.54';
-
+    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      if (req.session.user) {
       var uid = req.session.user.id;
         console.log('setting location');
         request({
@@ -52,11 +53,9 @@ module.exports = {
             });
           }
           console.log('ll before callback',ll);
-          // callback(null,ll);
         });
-      // }
-    // res.send(req.body)
-              res.send(req.session.user)
+      }
+    res.send(req.session.user)
 
   }
 

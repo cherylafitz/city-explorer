@@ -1,4 +1,4 @@
-var CityExplorer = angular.module('CityExplorer', ['ngMaterial','ngRoute','sailsResource','ngMessages','ngMdIcons']);
+var CityExplorer = angular.module('CityExplorer', ['ngMaterial','ngRoute','sailsResource','ngMessages','ngMdIcons','leaflet-directive']);
 
 CityExplorer.run(['UserService','$rootScope',function(UserService,$rootScope){
 

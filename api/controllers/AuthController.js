@@ -34,6 +34,37 @@ module.exports = {
           error:'Unknown User.'
         });
       }
+      if (user.location.length === 0) {
+            var ip = '157.130.186.54';
+    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      if (req.session.user) {
+      var uid = req.session.user.id;
+        console.log('setting location');
+        request({
+          url:'http://ip-api.com/json/' + ip
+        },function(error,response, body){
+          if(!error && response.statusCode === 200){
+            //optionally do some pre-proccessing here
+            // console.log(body)
+            body = JSON.parse(body)
+            ll = body.lat + ',' + body.lon
+            location = body.city + ', ' + body.region
+            // console.log('ll',ll)
+            User.findOneById(uid).then(function(user){
+              user.ll = ll;
+              user.location = location;
+              user.save();
+            })
+          }else{
+            console.log({
+              error:error,
+              code:response.statusCode
+            });
+          }
+          console.log('ll before callback',ll);
+        });
+      }
+      }
     });
   },
 
