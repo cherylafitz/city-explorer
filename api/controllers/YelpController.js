@@ -67,13 +67,13 @@ module.exports = {
       function(ll, callback) {
         // console.log('ll~!!!', ll)
         if (req.query.location) {
-          yelp.search({location: req.query.location, sort: 2, term: term}, manipData);
+          yelp.search({location: req.query.location, sort: 2, term: term, limit: req.query.limit || 20}, manipData);
         } else if (ll) {
-          yelp.search({ll: ll, sort: 2, term: term}, manipData);
+          yelp.search({ll: ll, sort: 2, term: term, limit: req.query.limit || 20}, manipData);
         } else if (req.query.ll) {
-          yelp.search({ll: req.query.ll, sort: 2, term: term}, manipData);
+          yelp.search({ll: req.query.ll, sort: 2, term: term, limit: req.query.limit || 20}, manipData);
         } else {
-          yelp.search({location: 'New York City', sort: 2, term: term}, manipData);
+          yelp.search({location: 'New York City', sort: 2, term: term, limit: req.query.limit || 20}, manipData);
         }
         callback(null,'data');
       }

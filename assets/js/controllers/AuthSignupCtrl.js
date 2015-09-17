@@ -1,4 +1,4 @@
-CityExplorer.controller('AuthSignupCtrl', ['$scope','$mdDialog','UserService','$http', function($scope,$mdDialog,UserService,$http){
+CityExplorer.controller('AuthSignupCtrl', ['$scope','$mdDialog','UserService','$http','$rootScope', function($scope,$mdDialog,UserService,$http,$rootScope){
 
 
   $scope.user={
@@ -20,6 +20,17 @@ CityExplorer.controller('AuthSignupCtrl', ['$scope','$mdDialog','UserService','$
       $mdDialog.hide(data);
       $http.get('api/user/setLocation',$scope.user).success(function(data){
         console.log('success?',$scope.user);
+        User.findOneById($scope.user.id).then(function(user){
+          if(user){
+            req.session.user = user;
+          }else{
+            console.log('failed to auto login')
+          }
+          next();
+        }).catch(function(err){
+          console.log('failed to auto login', err)
+          next();
+        });
       });
     }).error(function(err){
       alert('Nope... could not create a user.');

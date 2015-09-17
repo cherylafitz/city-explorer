@@ -31,7 +31,7 @@ CityExplorer.controller('NavCtrl', ['$scope','$mdDialog','$http','$rootScope','U
     //   // console.log(data);
     // });
   };
-  $scope.showSignup = function(ev) {
+  $rootScope.showSignup = function(ev) {
     $mdDialog.show({
       controller: 'AuthSignupCtrl',
       templateUrl: '/views/auth/signup.html',

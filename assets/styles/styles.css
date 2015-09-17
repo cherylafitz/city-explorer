@@ -109,6 +109,7 @@ ng-view {
   float: left;
   margin-bottom: 1em;
   margin-right: 2em;
+  margin-top: 2em;
 }
 .places-thumbs img {
   float: left;

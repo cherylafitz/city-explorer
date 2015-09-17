@@ -21,13 +21,13 @@
           <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" ng-class="{'fade': attraction.visited}">
           <img ng-if="attraction.img" ng-src="{{attraction.img}}" ng-class="{'fade': attraction.visited}"><div class="place-name" ng-class="{'fade': attraction.visited}"><a ng-href="{{attraction.url}}" target="_blank">{{attraction.name}}</a></div>
 
-          <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : attraction.visited}" ng-click="addPlace(attraction,$index,'visited')">
+          <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : attraction.visited}" ng-click="addPlace(attraction,$index,'visited','attraction')">
             <md-icon>check</md-icon>
           </md-button>
-          <md-button class="md-fab md-mini btn-add" ng-class="{'active' : attraction.willVisit}" ng-click="addPlace(attraction,$index,'willVisit')">
+          <md-button class="md-fab md-mini btn-add" ng-class="{'active' : attraction.willVisit}" ng-click="addPlace(attraction,$index,'willVisit','attraction')">
             <md-icon>add</md-icon>
           </md-button>
-          <md-button class="md-fab md-mini btn-clear" ng-click="addPlace(attraction,$index,'clear')">
+          <md-button class="md-fab md-mini btn-clear" ng-click="addPlace(attraction,$index,'clear','attraction')">
             <md-icon>clear</md-icon>
           </md-button>
         </div>
@@ -37,6 +37,15 @@
         <div class="places-thumbs restaurants" layout-wrap ng-repeat="restaurant in restaurants">
           <img ng-if="restaurant.image_url" ng-src="{{restaurant.image_url}}" >
           <img ng-if="restaurant.img" ng-src="{{restaurant.img}}" ><div class="place-name">{{restaurant.name}}</div>
+          <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : restaurant.visited}" ng-click="addPlace(restaurant,$index,'visited','restaurant')">
+            <md-icon>check</md-icon>
+          </md-button>
+          <md-button class="md-fab md-mini btn-add" ng-class="{'active' : restaurant.willVisit}" ng-click="addPlace(restaurant,$index,'willVisit','restaurant')">
+            <md-icon>add</md-icon>
+          </md-button>
+          <md-button class="md-fab md-mini btn-clear" ng-click="addPlace(restaurant,$index,'clear','restaurant')">
+            <md-icon>clear</md-icon>
+          </md-button>
         </div>
       </div>
       </div>

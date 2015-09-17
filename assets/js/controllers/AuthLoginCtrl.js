@@ -25,6 +25,17 @@ CityExplorer.controller('AuthLoginCtrl', ['$scope','$mdDialog','UserService','$h
       }
     });
   }
+
+  $scope.showSignup = function(ev) {
+    $mdDialog.show({
+      controller: 'AuthSignupCtrl',
+      templateUrl: '/views/auth/signup.html',
+      // template: 'test',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+    })
+  };
 }]);
 
 
