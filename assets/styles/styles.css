@@ -35,7 +35,12 @@ a:hover,
 a:active {
   color: #006064;
 }
-
+.recede {
+  opacity: .6;
+}
+.place-name.recede {
+  border-bottom-color: rgba(0,0,0,0);
+}
 md-checkbox.md-checked .md-icon {
   background-color: rgb(255, 143, 0);
 }
@@ -79,11 +84,13 @@ a.md-button.md-fab.btn-check,
 .md-button.md-fab.btn-check {
   /*border-color: #0097A7;*/
   transition: all 0.3s ease;
+  background-color: #B2EBF2;
 }
 
 a.md-button.md-fab.btn-add,
 .md-button.md-fab.btn-add {
   /*border-color:#FF8F00;*/
+  background-color: #FFE57F;
 }
 a.md-button.md-fab.btn-clear,
 .md-button.md-fab.btn-clear {
@@ -125,4 +132,12 @@ ng-view {
 
 .topnav {
   box-shadow: 0px 0px 20px #000;
+}
+/* MAP */
+
+.angular-leaflet-map {
+  box-shadow: 0 0 20px #999;
+}
+.map-container {
+  justify-content: flex-end;
 }

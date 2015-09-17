@@ -38,21 +38,7 @@ module.exports = {
       // });
       res.send(newData);
     };
-      // console.log('starting!!!!!!',data)
-      //   Place.find({owner:uid}).then(function(places){
-      //     placesYelpIds = places.map(function(item){
-      //       return {yelpId: item.yelp_id}
-      //     });
-      //     console.log(placesYelpIds)
 
-      //     data.find({
-      //       or : [
-      //         { yelp_id: placesYelpIds }
-      //       ]
-      //     })
-      //   })
-      // })
-    // };
     // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     // console.log('session', req.session)
 
@@ -71,7 +57,7 @@ module.exports = {
           }else{
             console.log({
               error:error,
-              code:response.statusCode
+              code:response.statusCode || 'not connected'
             });
           }
           console.log('ll before callback',ll);

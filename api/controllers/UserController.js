@@ -43,7 +43,7 @@ module.exports = {
             // console.log('ll',ll)
             User.findOneById(uid).then(function(user){
               user.ll = ll;
-              user.location = location;
+              user.defaultLocation = location;
               user.save();
             })
           }else{

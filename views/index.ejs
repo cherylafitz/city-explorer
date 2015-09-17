@@ -1,15 +1,15 @@
 <div layout="column" ng-app="CityExplorer">
   <md-toolbar class="topnav" layout="row">
-    <div class="md-toolbar-tools" ng-controller="NavCtrl">
+    <div class="md-toolbar-tools" ng-controller="NavCtrl" layout-margin layout-wrap>
       <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
         <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
       </md-button>
       <a id="brand">Urban Explorer</a>
-        <div class="nav left-nav">
+        <div class="nav left-nav" flex='25'>
           <a href="/"><md-button>Home</md-button></a>
           <a href="/about"><md-button>About</md-button></a>
         </div>
-        <div class="right-nav">
+        <div class="right-nav" flex='40'layout-align="end center">
             <span ng-if="currentUser">
               You are logged in as: {{currentUser.firstName || 'Unknown User'}}
             </span>
@@ -20,8 +20,10 @@
               {{currentUser.location}}
             </span>
         </div>
+
     </div>
   </md-toolbar>
+          <md-button ng-click="showSimpleToast()">toast</md-button>
   <ng-view layout-margin></ng-view>
 
 </div>

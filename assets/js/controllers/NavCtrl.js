@@ -1,9 +1,8 @@
-CityExplorer.controller('NavCtrl', ['$scope','$mdDialog','$http','$rootScope','UserService', function($scope,$mdDialog,$http,$rootScope,UserService){
+CityExplorer.controller('NavCtrl', ['$scope','$mdDialog','$http','$rootScope','UserService','ToastService', function($scope,$mdDialog,$http,$rootScope,UserService,ToastService){
 
   console.log('nav controller');
 
   console.log('location',$rootScope.location);
-
 
   $scope.UserService = UserService;
   $scope.$watchCollection('UserService',function(){
@@ -13,7 +12,7 @@ CityExplorer.controller('NavCtrl', ['$scope','$mdDialog','$http','$rootScope','U
 
   console.log('current user',$scope.currentUser);
 
-  $scope.showLogin = function(ev) {
+  $rootScope.showLogin = function(ev) {
     $mdDialog.show({
       controller: 'AuthLoginCtrl',
       templateUrl: '/views/auth/login.html',
@@ -48,6 +47,8 @@ CityExplorer.controller('NavCtrl', ['$scope','$mdDialog','$http','$rootScope','U
       //do nothing...
     });
   }
+
+
   console.log('current user',$scope.currentUser);
 
 }]);

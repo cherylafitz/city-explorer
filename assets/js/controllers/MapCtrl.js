@@ -1,4 +1,4 @@
-CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace', function($scope,UserService,UserPlace){
+CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace','Place', function($scope,UserService,UserPlace,Place){
 
   console.log('map controller');
 
@@ -7,6 +7,16 @@ CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace', function
   $scope.UserService = UserService;
   $scope.$watchCollection('UserService',function(){
     $scope.currentUser = UserService.currentUser;
+  });
+  $scope.Place = Place;
+  $scope.$watchCollection('UserPlace',function(){
+    $scope.userPlaces = UserPlace.query({
+      user_id:$scope.currentUser.id
+    }).then(function(places){
+      console.log('updated!', $scope.userPlaces)
+      return places;
+    });
+    console.log('update',$scope.userPlaces)
   });
 
   if ($scope.currentUser) {
@@ -18,7 +28,7 @@ CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace', function
 
       $scope.markers = {};
       places.forEach(function(item,index) {
-        if (item.visited === true || item.willVisit === true) {
+        if (item.willVisit === true) {
         $scope.markers['m' + (index + 1)] = {'lat': item.lat,'lng': item.lon,'visited': item.visited, 'willVisit': item.willVisit}
         }
       })

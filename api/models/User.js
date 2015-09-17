@@ -25,7 +25,7 @@ module.exports = {
       minLength: 6,
       required: true
     },
-    location:{
+    defaultLocation:{
       type: 'string'
     },
 
@@ -33,6 +33,10 @@ module.exports = {
     places: {
       collection:'Place',
       via: 'owner'
+    },
+    locations: {
+      collection: 'Location',
+      via: 'users'
     },
 
     fullName: function(){

@@ -1,4 +1,4 @@
-CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService','Place','User','UserPlace', function($scope,$http,$rootScope,UserService,Place,User,UserPlace){
+CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService','Place','User','UserPlace','AlertService','$mdSidenav', function($scope,$http,$rootScope,UserService,Place,User,UserPlace,AlertService,$mdSidenav){
 
   console.log('home controller');
 
@@ -62,13 +62,20 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
       }).catch(function(err){
         console.log('err',err);
       });
+    } else {
+      AlertService.add('forbidden','Please log in to save your preferences.')
+      $rootScope.showLogin(ev);
     }
   }
 
   // watches current user
   $scope.UserService = UserService;
   $scope.$watchCollection('UserService',function(){
+    console.log('change')
     $scope.currentUser = UserService.currentUser;
+      $scope.$evalAsync(function(){
+        addPlace();
+    })
   });
 
   // to be used for changing default location
@@ -160,5 +167,24 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
       getAttractions();
       getRestaurants();
   })
+
+// map sidenav
+
+  // $scope.toggleRight = buildToggler('right');
+  //   /**
+  //    * Build handler to open/close a SideNav; when animation finishes
+  //    * report completion in console
+  //    */
+  //   function buildToggler(navID) {
+  //     var debounceFn =  $mdUtil.debounce(function(){
+  //           $mdSidenav(navID)
+  //             .toggle()
+  //             .then(function () {
+  //               $log.debug("toggle " + navID + " is done");
+  //             });
+  //         },200);
+  //     return debounceFn;
+  //   }
+  // })
 
 }]);

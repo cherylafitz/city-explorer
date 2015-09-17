@@ -9,13 +9,17 @@
 
       <div flex-gt-sm="50">
         <a href="/map"><md-button class="md-raised md-primary md-fab" layout-align="right">Map</md-button></a>
+        <md-button ng-click="toggleRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
       </div>
 
       <div class="attractions">
         <h1 class="md-headline">Attractions</h1>
-        <div class="places-thumbs" layout-wrap ng-repeat="attraction in attractions">
-          <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" >
-          <img ng-if="attraction.img" ng-src="{{attraction.img}}" ><div class="place-name"><a ng-href="{{attraction.url}}" target="_blank">{{attraction.name}}</a></div>
+        <div class="places-thumbs" layout-wrap ng-repeat="attraction in attractions | orderBy:{visited:false}" >
+          <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" ng-class="{'fade': attraction.visited}">
+          <img ng-if="attraction.img" ng-src="{{attraction.img}}" ng-class="{'fade': attraction.visited}"><div class="place-name" ng-class="{'fade': attraction.visited}"><a ng-href="{{attraction.url}}" target="_blank">{{attraction.name}}</a></div>
 
           <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : attraction.visited}" ng-click="addPlace(attraction,$index,'visited')">
             <md-icon>check</md-icon>
