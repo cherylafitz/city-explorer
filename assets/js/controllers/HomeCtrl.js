@@ -74,7 +74,7 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
     console.log('change')
     $scope.currentUser = UserService.currentUser;
       $scope.$evalAsync(function(){
-        addPlace();
+        // addPlace();
     })
   });
 
