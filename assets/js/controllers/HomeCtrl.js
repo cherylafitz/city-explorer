@@ -86,8 +86,10 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
   // to be used for changing default location
   $scope.setLocation = function() {
     console.log($scope.chosenLocation);
-    getRestaurants();
-    getAttractions();
+      $scope.$evalAsync(function(){
+        getAttractions('&term=attractions','attractions');
+        getAttractions('&term=restaurants&limit=10','restaurants');
+      })
   }
   $scope.replaceApiData = function(data) {
       $scope.places.forEach(function(place, index) {
