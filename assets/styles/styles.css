@@ -22,7 +22,7 @@ md-headline {
 }
 md-sidenav.md-sidenav-right {
   width: 800px;
-  min-width: 304px;
+  min-width: 800px;
   max-width: 800px;
   padding: 0 2em;
 }

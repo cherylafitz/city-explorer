@@ -1,10 +1,16 @@
-CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace','Place','$mdSidenav', function($scope,UserService,UserPlace,Place,$mdSidenav){
+CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace','Place','$mdSidenav','leafletData','$timeout', function($scope,UserService,UserPlace,Place,$mdSidenav,leafletData,$timeout){
 
   console.log('map controller');
 
   $scope.openRightMenu = function() {
     console.log('open right menu')
     $mdSidenav('right').toggle();
+    $timeout(function(){
+      console.log('running invalidateSize')
+      leafletData.getMap().then(function(map) {
+      map.invalidateSize();
+      });
+    },500)
   };
 
   $scope.currentUser = UserService.currentUser;
@@ -80,7 +86,6 @@ CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace','Place','
             }
         }
     });
-
     $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
         $scope.position.lat = args.model.lat;
         $scope.position.lng = args.model.lng;
