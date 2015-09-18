@@ -173,11 +173,11 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
     });
   }
 
-  $scope.$evalAsync(function(){
-      getAttractions('&term=attractions','attractions');
-      getAttractions('&term=restaurants&limit=10','restaurants');
-      // getRestaurants();
-  })
+  // $scope.$evalAsync(function(){
+  //     getAttractions('&term=attractions','attractions');
+  //     getAttractions('&term=restaurants&limit=10','restaurants');
+  //     // getRestaurants();
+  // })
 
 
 // map sidenav

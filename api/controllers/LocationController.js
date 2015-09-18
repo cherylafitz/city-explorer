@@ -6,6 +6,8 @@
  */
 
 module.exports = {
-	
+
+  // create:
+  // var uid = req.session.user.id;
 };
 

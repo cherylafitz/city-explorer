@@ -1,6 +1,11 @@
-CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace','Place', function($scope,UserService,UserPlace,Place){
+CityExplorer.controller('MapCtrl', ['$scope','UserService','UserPlace','Place','$mdSidenav', function($scope,UserService,UserPlace,Place,$mdSidenav){
 
   console.log('map controller');
+
+  $scope.openRightMenu = function() {
+    console.log('open right menu')
+    $mdSidenav('right').toggle();
+  };
 
   $scope.currentUser = UserService.currentUser;
 

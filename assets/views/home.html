@@ -1,33 +1,44 @@
 
-  <md-content layout="row" class="md-padding" layout-wrap layout-gt-sm layout-align="space-around center"
+  <md-content layout="row" class="main-content md-padding" layout-wrap layout-padding layout-gt-sm layout-align="space-between center">
 
->
-      <form class="set-location" ng-submit="setLocation()" flex-gt-sm="50">
-        <md-input-container>
-          <label>Set Location</label>
+      <form class="set-location" ng-submit="setLocation()" flex-gt-sm="20">
+        <md-input-container clss="md-accent">
+          <label>New Location</label>
           <input type="text" ng-model="chosenLocation">
         </md-input-container>
       </form>
+        <span ng-controller="MapCtrl">
+          <md-sidenav md-component-id="right" class="md-sidenav-right">
+            <div class="map-container" layout="row">
+              <h3>My Places</h3>
+              <md-button class="map-btn md-raised md-accent md-fab" ng-click="openRightMenu()" layout-align="right">close</md-button>
+              <leaflet flex-gt-sm="100" flex-sm="100" id="mymap" controls="controls"   defaults="defaults" markers="markers" center="seattle" height="600px" width="90%"></leaflet>
 
-      <div flex-gt-sm="50">
-        <a href="/map"><md-button class="md-raised md-primary md-fab" layout-align="right">Map</md-button></a>
-        <md-button ng-click="toggleRight()"
-            class="md-primary">
-            Toggle right
-          </md-button>
-      </div>
+            </div>
+          </md-sidenav>
+            <md-button class="map-btn md-raised md-accent md-fab md-mini" ng-click="openRightMenu()" layout-align="right"><md-icon>map</md-icon> </md-button>map
+          </span>
+      <span class="key">
+        <md-icon class="key-icon">beenhere</md-icon> Been here <md-icon class="key-icon">pin_drop</md-icon> Want to go here
+      </span>
 
-      <div class="attractions" flex-gt-sm="66" flex-sm="100">
+      <div class="attractions" flex-gt-sm="66" flex-sm="100" >
         <h1 class="md-headline">Attractions</h1>
         <div class="places-thumbs" layout-wrap ng-repeat="attraction in attractions | orderBy:{visited:false}" >
-          <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" ng-class="{'fade': attraction.visited}">
-          <img ng-if="attraction.img" ng-src="{{attraction.img}}" ng-class="{'fade': attraction.visited}"><div class="place-name" ng-class="{'fade': attraction.visited}"><a ng-href="{{attraction.url}}" target="_blank">{{attraction.name}}</a></div>
+          <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" ng-class="{'recede': attraction.visited}">
+          <img ng-if="attraction.img" ng-src="{{attraction.img}}" ng-class="{'recede': attraction.visited}">
+          <div class="place-name" ng-class="{'recede': attraction.visited}">
+
+          <a ng-href="{{attraction.url}}" target="_blank">{{attraction.name}}</a>
+          <md-icon class="will-visit-icon" ng-if="attraction.willVisit">pin_drop</md-icon>
+          <md-icon class="visited-icon" ng-if="attraction.visited">beenhere</md-icon>
+          </div>
 
           <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : attraction.visited}" ng-click="addPlace(attraction,$index,'visited','attraction')">
-            <md-icon>check</md-icon>
+            <md-icon class="btn-check">beenhere</md-icon>
           </md-button>
           <md-button class="md-fab md-mini btn-add" ng-class="{'active' : attraction.willVisit}" ng-click="addPlace(attraction,$index,'willVisit','attraction')">
-            <md-icon>add</md-icon>
+            <md-icon>pin_drop</md-icon>
           </md-button>
           <md-button class="md-fab md-mini btn-clear" ng-click="addPlace(attraction,$index,'clear','attraction')">
             <md-icon>clear</md-icon>
@@ -38,12 +49,15 @@
         <h1 class="md-headline">Restaurants</h1>
         <div class="places-thumbs restaurants" layout-wrap ng-repeat="restaurant in restaurants">
           <img ng-if="restaurant.image_url" ng-src="{{restaurant.image_url}}" >
-          <img ng-if="restaurant.img" ng-src="{{restaurant.img}}" ><div class="place-name">{{restaurant.name}}</div>
+          <img ng-if="restaurant.img" ng-src="{{restaurant.img}}" >
+          <div class="place-name">{{restaurant.name}}</div>
+          <md-icon class="will-visit-icon" ng-if="attraction.willVisit">pin_drop</md-icon>
+          <md-icon class="visited-icon" ng-if="attraction.visited">beenhere</md-icon>
           <md-button class="md-fab md-mini md-hue-8 btn-check" ng-class="{'active' : restaurant.visited}" ng-click="addPlace(restaurant,$index,'visited','restaurant')">
-            <md-icon>check</md-icon>
+            <md-icon class="btn-check">beenhere</md-icon>
           </md-button>
           <md-button class="md-fab md-mini btn-add" ng-class="{'active' : restaurant.willVisit}" ng-click="addPlace(restaurant,$index,'willVisit','restaurant')">
-            <md-icon>add</md-icon>
+            <md-icon>pin_drop</md-icon>
           </md-button>
           <md-button class="md-fab md-mini btn-clear" ng-click="addPlace(restaurant,$index,'clear','restaurant')">
             <md-icon>clear</md-icon>

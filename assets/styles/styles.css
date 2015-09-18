@@ -1,9 +1,9 @@
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Istok Web', sans-serif;
 }
 
 .nav a {
-  margin-right: 1em;
+  margin-right: 0em;
 }
 /*.attractions {
   width: 68%;
@@ -13,7 +13,15 @@ body {
 .restaurants {
   width: 30%;
 }*/
-
+.nav md-icon {
+  font-size: 2em;
+  line-height: .6;
+}
+md-sidenav.md-sidenav-right {
+  width: 800px;
+  min-width: 304px;
+  max-width: 800px;
+}
 #brand {
   margin-right: 1em;
   font-size: 1.5em;
@@ -21,12 +29,22 @@ body {
 .right-nav {
   text-align: right;
 }
+.md-headline {
+  /*text-align: center;*/
+  color: #263238;
+}
 .checkbox {
   float: right;
 }
 .welcome-text {
-  font-size: .8em;
-  color: #FFE57F;
+  font-size: .7em;
+  color: #b0bec5;
+}
+
+md-toolbar:not(.md-menu-toolbar) md-icon.location-icon {
+  color: rgb(205,220,57);
+  margin: 0 .5em;
+
 }
 
 a {
@@ -57,12 +75,40 @@ a.md-button.md-fab.active,
 .material-icons {
   line-height: 1;
 }
+.map-btn.md-button.md-fab {
+  border-radius: 0%;
+  border: none;
+}
+a.md-button.md-accent.md-raised:not([disabled]) md-icon,
+a.md-button.md-accent.md-fab:not([disabled]) md-icon,
+.md-button.md-accent.md-raised:not([disabled]) md-icon,
+.md-button.md-accent.md-fab:not([disabled]) md-icon,
+.key-icon {
+  color: #37474f;
+}
+.key {
+  text-align: right;
+}
+.map-btn md-icon {
+  color: #fff;
+}
+.map-btn md-icon {
+  font-size: 2em;
+  line-height: .8;
+}
 a.md-button.md-fab,
 .md-button.md-fab {
   background-color: #fff;
-  /*border: 2px solid;*/
+  border-color: #444;
+  border: 1px solid;
   opacity: 1;
 }
+/*a.md-button.md-fab:hover,
+.md-button.md-fab:hover,
+a.md-button.md-fab:active,
+.md-button.md-fab:active {
+  color: #fff;
+}*/
 a.md-button.md-fab.btn-clear:hover,
 .md-button.md-fab.btn-clear:hover {
   background-color: #e6e6e6;
@@ -81,32 +127,46 @@ a.md-button.md-fab.active md-icon,
 }
 a.md-button.md-fab.btn-add.active,
 .md-button.md-fab.btn-add.active {
-  background-color: #FF8F00;
+  background-color: #AFB42B;
   transition: all 0.3s ease;
 }
 a.md-button.md-fab.btn-check,
 .md-button.md-fab.btn-check {
   /*border-color: #0097A7;*/
   transition: all 0.3s ease;
-  background-color: #B2EBF2;
+  /*background-color: #B2DFDB;*/
+  background-color: #fff;
+  border-color: #444;
 }
-
+a.md-button.md-fab md-icon,
+.md-button.md-fab md-icon {
+  color: #37474f;
+}
+.will-visit-icon {
+  color: #AFB42B;
+}
+.visited-icon {
+  color: #0097A7;
+}
 a.md-button.md-fab.btn-add,
 .md-button.md-fab.btn-add {
   /*border-color:#FF8F00;*/
-  background-color: #FFE57F;
+  /*background-color: #DCE775;*/
+  background-color: #fff;
+  border-color: #444;
 }
 a.md-button.md-fab.btn-clear,
 .md-button.md-fab.btn-clear {
   /*border-color: #cecece;*/
-}
-
-.md-button.md-fab.btn-clear {
   background-color: #fff;
+  border-color: #444;
 }
-
-ng-view {
-  padding: 0em 1em;
+md-input-container label,
+md-input-container .md-placeholder {
+  color: #AFB42B;
+}
+.main-content {
+  padding: .8em 3em;
 }
 .places-thumbs {
   width: 350px;
@@ -150,6 +210,7 @@ ng-view {
 
 .angular-leaflet-map {
   box-shadow: 0 0 20px #999;
+  margin: 4em 1em 1em 1em;
 }
 .map-container {
   justify-content: flex-end;

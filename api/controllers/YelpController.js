@@ -54,11 +54,13 @@ module.exports = {
             body = JSON.parse(body)
             ll = body.lat + ',' + body.lon
             // console.log('ll',ll)
-          }else{
+          }else if (response) {
             console.log({
               error:error,
               code:response.statusCode || 'not connected'
             });
+          } else {
+            console.log('error:',error);
           }
           console.log('ll before callback',ll);
           callback(null,ll);
