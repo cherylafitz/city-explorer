@@ -9,9 +9,12 @@
       </form>
         <span ng-controller="MapCtrl">
           <md-sidenav md-component-id="right" class="md-sidenav-right">
-            <div class="map-container" layout="row">
-              <h3>My Places</h3>
-              <md-button class="map-btn md-raised md-accent md-fab" ng-click="openRightMenu()" layout-align="right">close</md-button>
+            <div class="map-container" layout="row" layout-wrap>
+              <span flex="100">
+              <h1 class="md-headline">Places to Visit
+              <md-icon class="clear-sidenav" ng-click="openRightMenu()">clear</md-icon>
+              </h1>
+              </span>
               <leaflet flex-gt-sm="100" flex-sm="100" id="mymap" controls="controls"   defaults="defaults" markers="markers" center="seattle" height="600px" width="90%"></leaflet>
 
             </div>
@@ -19,7 +22,7 @@
             <md-button class="map-btn md-raised md-accent md-fab md-mini" ng-click="openRightMenu()" layout-align="right"><md-icon>map</md-icon> </md-button>map
           </span>
       <span class="key">
-        <md-icon class="key-icon">beenhere</md-icon> Been here <md-icon class="key-icon">pin_drop</md-icon> Want to go here
+        <md-icon class="key-icon">beenhere</md-icon> Have visited <md-icon class="key-icon">pin_drop</md-icon> Want to visit
       </span>
 
       <div class="attractions" flex-gt-sm="66" flex-sm="100" >

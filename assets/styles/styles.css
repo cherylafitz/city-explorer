@@ -5,6 +5,9 @@ body {
 .nav a {
   margin-right: 0em;
 }
+md-headline {
+  color: #37474f;
+}
 /*.attractions {
   width: 68%;
   float: left;
@@ -21,6 +24,10 @@ md-sidenav.md-sidenav-right {
   width: 800px;
   min-width: 304px;
   max-width: 800px;
+  padding: 0 2em;
+}
+.clear-sidenav:hover {
+  cursor: pointer;
 }
 #brand {
   margin-right: 1em;
@@ -56,6 +63,10 @@ a {
 a:hover,
 a:active {
   color: #006064;
+}
+a#brand:hover,
+a#brand:active  {
+  color: rgb(205,220,57);
 }
 .recede {
   opacity: .6;
@@ -209,8 +220,8 @@ md-input-container .md-placeholder {
 /* MAP */
 
 .angular-leaflet-map {
-  box-shadow: 0 0 20px #999;
-  margin: 4em 1em 1em 1em;
+  box-shadow: 0 0 10px #999;
+  /*margin: 4em 1em 1em 1em;*/
 }
 .map-container {
   justify-content: flex-end;
