@@ -1,5 +1,7 @@
 
-  <md-content layout="row" class="md-padding" layout-wrap layout-gt-sm>
+  <md-content layout="row" class="md-padding" layout-wrap layout-gt-sm layout-align="space-around center"
+
+>
       <form class="set-location" ng-submit="setLocation()" flex-gt-sm="50">
         <md-input-container>
           <label>Set Location</label>
@@ -15,7 +17,7 @@
           </md-button>
       </div>
 
-      <div class="attractions">
+      <div class="attractions" flex-gt-sm="66" flex-sm="100">
         <h1 class="md-headline">Attractions</h1>
         <div class="places-thumbs" layout-wrap ng-repeat="attraction in attractions | orderBy:{visited:false}" >
           <img ng-if="attraction.image_url" ng-src="{{attraction.image_url}}" ng-class="{'fade': attraction.visited}">
@@ -32,7 +34,7 @@
           </md-button>
         </div>
       </div>
-      <div class="restaurants">
+      <div class="restaurants" flex-gt-sm="33" flex-sm="100">
         <h1 class="md-headline">Restaurants</h1>
         <div class="places-thumbs restaurants" layout-wrap ng-repeat="restaurant in restaurants">
           <img ng-if="restaurant.image_url" ng-src="{{restaurant.image_url}}" >

@@ -74,13 +74,13 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
     console.log('change')
     $scope.currentUser = UserService.currentUser;
     $timeout(function(){
-        $scope.attractions = [];
+        // $scope.attractions = [];
       $scope.$evalAsync(function(){
         getAttractions('&term=attractions','attractions');
         getAttractions('&term=restaurants&limit=10','restaurants');
       })
         // getAttractions();
-    },1000)
+    },200)
   });
 
   // to be used for changing default location
