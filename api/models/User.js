@@ -25,7 +25,7 @@ module.exports = {
       minLength: 6,
       required: true
     },
-    defaultLocation:{
+    location:{
       type: 'string'
     },
 

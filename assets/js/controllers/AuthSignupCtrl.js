@@ -1,4 +1,4 @@
-CityExplorer.controller('AuthSignupCtrl', ['$scope','$mdDialog','UserService','$http','$rootScope', function($scope,$mdDialog,UserService,$http,$rootScope){
+CityExplorer.controller('AuthSignupCtrl', ['$scope','$mdDialog','UserService','$http','$rootScope','User', function($scope,$mdDialog,UserService,$http,$rootScope,User){
 
 
   $scope.user={
@@ -20,16 +20,18 @@ CityExplorer.controller('AuthSignupCtrl', ['$scope','$mdDialog','UserService','$
       $mdDialog.hide(data);
       $http.get('api/user/setLocation',$scope.user).success(function(data){
         console.log('success?',$scope.user);
-        User.findOneById($scope.user.id).then(function(user){
-          if(user){
-            req.session.user = user;
-          }else{
-            console.log('failed to auto login')
+        UserService.login($scope.user.email, $scope.user.password, function(err, data){
+          if(err){
+            console.log(err);
+            alert('Something terrible happened.');
+          } else if(data && data.result) {
+            console.log(data);
+            $mdDialog.hide();
+          } else {
+            console.log(data);
+            // $mdDialog.hide();
+            alert('Unable to login.');
           }
-          next();
-        }).catch(function(err){
-          console.log('failed to auto login', err)
-          next();
         });
       });
     }).error(function(err){

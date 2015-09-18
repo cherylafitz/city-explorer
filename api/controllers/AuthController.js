@@ -34,9 +34,12 @@ module.exports = {
           error:'Unknown User.'
         });
       }
-      if (req.session.user && user.defaultLocation.length === 0) {
+      console.log('logged in, trying for locaiton')
+      if (req.session.user && user.location.length === 0) {
         // development ip
         var ip = '157.130.186.54';
+
+        console.log('user identified, location lenght zero')
         // production ip
         // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         if (req.session.user) {
@@ -49,10 +52,10 @@ module.exports = {
               body = JSON.parse(body)
               ll = body.lat + ',' + body.lon
               location = body.city + ', ' + body.region
-              // console.log('ll',ll)
+              console.log('ll',ll)
               User.findOneById(uid).then(function(user){
                 user.ll = ll;
-                user.defaultLocation = location;
+                user.location = location;
                 user.save();
               })
             }else{
