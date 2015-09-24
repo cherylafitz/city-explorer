@@ -1,5 +1,7 @@
 # Urban Explorer
-## (previously City Explorer)
+(previously City Explorer)
+
+[http://urbanexplorer.herokuapp.com/](http://urbanexplorer.herokuapp.com/)
 
 ### About the Site
 Urban Explorer is a web application to help people visit the most popular attractions and restaurants in a city.
