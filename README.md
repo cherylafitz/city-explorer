@@ -15,6 +15,9 @@ Urban Explorer is a web application to help people visit the most popular attrac
 ### Approach
 Urban Explorer pulls the top 20 attractions and top 10 restaurants in a city, based on Yelp reviews. After logging in users can check off places they have visited, and mark places they would like to go. A map is provided to indicate the location of places users would like to go.
 
+### Known Issues
+Currently there is acompatibility issue with Safari browser. I am actively working to resolve this.
+
 ### Next Steps
 
 * Locations: users will be able to save up to five locations.
