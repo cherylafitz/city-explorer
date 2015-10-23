@@ -116,10 +116,15 @@ CityExplorer.controller('HomeCtrl', ['$scope', '$http','$rootScope','UserService
     return $http({
       url:'/api/yelp/search?' + $scope.location + '&term=restaurants&limit=10',
     }).then(function(data){
-      $scope.replaceApiData(data);
-
-      console.log('food', data.data)
-      $scope.restaurants = data.data;
+      console.log(data)
+      if (data.error) {
+        $scope.error = data.error;
+        console.log($scope.error)
+      } else {
+        $scope.replaceApiData(data);
+        console.log('food', data.data)
+        $scope.restaurants = data.data;
+      }
     });
   }
 

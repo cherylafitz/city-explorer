@@ -31,10 +31,14 @@ module.exports = {
     var manipData = function(error, data) {
       console.log(data)
       var newData = {};
-      data.businesses.forEach(function(item){
-        var id = item.id;
-        newData[id] = item
-      })
+      if (data.businesses) {
+        data.businesses.forEach(function(item){
+          var id = item.id;
+          newData[id] = item
+        })
+      } else {
+        data.error = "Sorry, no results for that search. Please try another place."
+      }
       // });
       res.send(newData);
     };
@@ -56,7 +60,7 @@ module.exports = {
             // console.log('ll',ll)
           }else if (response) {
             console.log({
-              error:error,
+              responseError:error,
               code:response.statusCode || 'not connected'
             });
           } else {
